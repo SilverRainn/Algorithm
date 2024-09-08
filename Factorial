@@ -1,0 +1,49 @@
+import tkinter as tk
+import time
+
+def factorial(n):
+    return 1 if n == 0 else n * factorial(n - 1)
+
+def loop_factorial(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+def calculate(event):
+    try:
+        num = int(entry.get())
+        
+        # Recursive factorial
+        start = time.time()
+        rec_result = factorial(num)
+        rec_time = (time.time() - start) * 1000  # Convert to ms
+        
+        # Loop factorial
+        start = time.time()
+        loop_result = loop_factorial(num)
+        loop_time = (time.time() - start) * 1000  # Convert to ms
+        
+        result_label.config(text=f"Recursive Factorial :\n{rec_result}\n"
+                                 f"{int(rec_time*10000)} Ticks = {rec_time:.2f} ms\n\n"
+                                 f"Loop Factorial :\n{loop_result}\n"
+                                 f"{int(loop_time*10000)} Ticks = {loop_time:.2f} ms")
+    except ValueError:
+        result_label.config(text="유효한 숫자를 입력하세요.")
+
+# Tkinter GUI setup
+root = tk.Tk()
+root.title("Factorial Calculator")
+
+tk.Label(root, text="다음 숫자의 팩토리얼을 계산!").pack()
+
+entry = tk.Entry(root)
+entry.pack()
+
+# Entry에서 키 입력 시 calculate 함수 호출
+entry.bind("<KeyRelease>", calculate)
+
+result_label = tk.Label(root, text="", justify='left')
+result_label.pack()
+
+root.mainloop()
