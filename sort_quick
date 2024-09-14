@@ -1,0 +1,31 @@
+import random
+import time
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[len(arr) // 2]
+        left = [x for x in arr if x < pivot]
+        middle = [x for x in arr if x == pivot]
+        right = [x for x in arr if x > pivot]
+        return quick_sort(left) + middle + quick_sort(right)
+
+# 랜덤으로 생성된 배열
+arr = random.sample(range(1, 100), 10)
+
+# 배열 출력
+print("랜덤으로 생성된 배열:", arr)
+
+# 실행 시간 측정 코드
+start_time = time.time()
+
+# 퀵 정렬 알고리즘 실행
+sorted_arr = quick_sort(arr)
+
+# 실행 시간 출력
+end_time = time.time()
+print(f"실행 시간: {end_time - start_time} 초")
+
+# 정렬된 배열 출력
+print("정렬된 배열:", sorted_arr)
