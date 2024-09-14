@@ -1,0 +1,29 @@
+import random
+import time
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+# 랜덤으로 생성된 배열
+arr = random.sample(range(1, 100), 10)
+
+# 배열 출력
+print("랜덤으로 생성된 배열:", arr)
+
+# 실행 시간 측정 코드
+start_time = time.time()
+
+# 버블 정렬 알고리즘 실행
+sorted_arr = bubble_sort(arr)
+
+# 실행 시간 출력
+end_time = time.time()
+print(f"실행 시간: {end_time - start_time} 초")
+
+# 정렬된 배열 출력
+print("정렬된 배열:", sorted_arr)
